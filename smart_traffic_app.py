@@ -37,7 +37,10 @@ vehicle_count = st.slider("Total Vehicle Count", 0, 100, 30)
 avg_speed = st.slider("Average Speed (km/h)", 0, 100, 35)
 weather = st.selectbox("Weather Condition", ["Clear", "Rainy", "Foggy"])
 accident_reported = st.checkbox("Accident Reported")
-emergency_flag = 1 if is_emergency else 0 if uploaded_img else st.selectbox("Emergency Flag (if no image)", [0, 1])
+if uploaded_img:
+    emergency_flag = 1 if is_emergency else 0
+else:
+    emergency_flag = st.selectbox("Emergency Flag (if no image)", [0, 1])
 
 weather_map = {"Clear": 0, "Rainy": 1, "Foggy": 2}
 input_data = pd.DataFrame([{
